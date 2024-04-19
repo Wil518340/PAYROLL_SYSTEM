@@ -69,22 +69,26 @@ public class TakeAttendance extends JFrame implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent ae){
-       
+        String msg= ae.getActionCommand();
         String f = fh.getSelectedItem();
         String s = sh.getSelectedItem();
         String dt = new java.util.Date().toString();
         String id=c2.getSelectedItem();
         // Search whatever is match with above input from database
         String qry = "INSERT INTO attendance (id,data_tm,f_half,s_half) VALUES( '"+ id +"','"+dt+"','"+f+"','"+s+"')";
-       
-        try{
-            // Connect and execute the command create above
-            conn c1 = new conn();
-            c1.s.executeUpdate(qry);
-            JOptionPane.showMessageDialog(null,"Attendance confirmed");
-            this.setVisible(false);
-        }catch(Exception ee){
-            ee.printStackTrace();
+        if(msg.equals("Submit")){
+            try{
+                // Connect and execute the command create above
+                conn c1 = new conn();
+                c1.s.executeUpdate(qry);
+                JOptionPane.showMessageDialog(null,"Attendance confirmed");
+                this.setVisible(false);
+            }catch(Exception ee){
+                ee.printStackTrace();
+            }
+        }else if (msg.equals("Cancel")){
+            new project().setVisible(true); //show new page
+            setVisible(false);
         }
     }
     
