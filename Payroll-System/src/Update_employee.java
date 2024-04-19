@@ -6,7 +6,7 @@ import java.awt.event.*;
 public class Update_employee extends JFrame implements ActionListener,ItemListener{
     JLabel l1,l2,l3,l4,l5,l6,l7,emp;
     JTextField t1,t2,t3,t4,t5,t6,t7;
-    JButton b1,b2;
+    JButton b1,b2,b3;
     Choice c1,c2;
     
     Update_employee(){
@@ -95,20 +95,28 @@ public class Update_employee extends JFrame implements ActionListener,ItemListen
         
         b1 =new JButton("Update");
         b2 = new JButton("Delete");
+        b3 = new JButton("Cancel");
         
         b1.setBounds(40,400,150,30);
         b2.setBounds(200,400,150,30);
+        b3.setBounds(120,440,150,30);
         add(b1);
         add(b2);
+        add(b3);
         
         b1.setBackground(Color.BLACK);
         b1.setForeground(Color.WHITE);
         
         b2.setBackground(Color.BLACK);
         b2.setForeground(Color.WHITE);
+
+        
+        b3.setBackground(Color.BLACK);
+        b3.setForeground(Color.WHITE);
         
         b1.addActionListener(this);
         b2.addActionListener(this);
+        b3.addActionListener(this);
         
         c2.addItemListener(this);
         
@@ -148,6 +156,11 @@ public class Update_employee extends JFrame implements ActionListener,ItemListen
             }catch(Exception ee){
                 ee.printStackTrace();
             }
+        }
+
+        if(ae.getSource()==b3){
+            new project().setVisible(true); //show new page
+            setVisible(false);
         }
     }
     
