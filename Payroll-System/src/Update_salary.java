@@ -6,7 +6,7 @@ import java.awt.event.*;
 public class Update_salary extends JFrame implements ActionListener,ItemListener{
     JLabel l1,l2,l3,l4,l5,l6;
     JTextField t1,t2,t3,t4,t5,t6;
-    JButton b1,b2;
+    JButton b1,b2, b3;
     Choice c2;
     
     Update_salary(){
@@ -77,14 +77,21 @@ public class Update_salary extends JFrame implements ActionListener,ItemListener
         b2 = new JButton("Delete");
         b2.setBackground(Color.BLACK);
         b2.setForeground(Color.WHITE);
+
+        b3 = new JButton("Cancel");
+        b3.setBackground(Color.BLACK);
+        b3.setForeground(Color.WHITE);
         
         b1.setBounds(40,280,100,20);
         b2.setBounds(200,280,100,20);
+        b3.setBounds(120,310,100,20);
         add(b1);
         add(b2);
+        add(b3);
        
         b1.addActionListener(this);
         b2.addActionListener(this);
+        b3.addActionListener(this);
         c2.addItemListener(this);
         
         getContentPane().setBackground(Color.WHITE);
@@ -103,7 +110,6 @@ public class Update_salary extends JFrame implements ActionListener,ItemListener
             String med = t3.getText();
             String pf = t4.getText();
             String basic = t5.getText();
-      
             String qry = "update salary set hra="+hra+",da="+da+",med="+med+",pf="+pf+",basic_salary="+basic+"  where id="+c2.getSelectedItem();
             // Insert all the update input values into the database 
             try{
@@ -117,8 +123,7 @@ public class Update_salary extends JFrame implements ActionListener,ItemListener
             }
         }
         
-        if(ae.getSource()==b2){
-            
+        if(ae.getSource()==b2){    
             try{
                 // Delete the selected Employee's salary
                 conn c1 = new conn();
@@ -128,6 +133,11 @@ public class Update_salary extends JFrame implements ActionListener,ItemListener
             }catch(Exception ee){
                 ee.printStackTrace();
             }
+        }
+
+        if(ae.getSource()==b3){
+            new project().setVisible(true); //show new page
+            setVisible(false);
         }
     }
     
