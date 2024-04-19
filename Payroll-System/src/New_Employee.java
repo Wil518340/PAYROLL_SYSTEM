@@ -81,7 +81,7 @@ public class New_Employee extends JFrame implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent ae){
-       
+        String msg= ae.getActionCommand();
         
         Random rnd = new Random();
         int number = rnd.nextInt(9999);
@@ -96,15 +96,19 @@ public class New_Employee extends JFrame implements ActionListener{
         String p = t7.getText();
         // Add the input into SQL database
         String qry = "insert into employee values('"+num+"','"+n+"','"+g+"','"+a+"','"+s+"','"+c+"','"+e+"','"+p+"')";
-       
-        try{
-            // connect to database and execute the commend
-            conn c1 = new conn();
-            c1.s.executeUpdate(qry);
-            JOptionPane.showMessageDialog(null,"Employee Created");
-            this.setVisible(false);  
-        }catch(Exception ee){
-            ee.printStackTrace();
+        if(msg.equals("Submit")){
+            try{
+                // connect to database and execute the commend
+                conn c1 = new conn();
+                c1.s.executeUpdate(qry);
+                JOptionPane.showMessageDialog(null,"Employee Created");
+                this.setVisible(false);  
+            }catch(Exception ee){
+                ee.printStackTrace();
+            }
+        }else if (msg.equals("Cancel")){
+            new project().setVisible(true); //show new page
+            setVisible(false);
         }
     }
     public static void main(String s[]){
