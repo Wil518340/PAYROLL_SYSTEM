@@ -56,7 +56,7 @@ public class project extends JFrame implements ActionListener {
         t4.addActionListener(this);
         
         JMenu edit =new JMenu("Update");
-        edit.setForeground(Color.RED);
+        edit.setForeground(Color.blue);
    
         mb.add(edit);
         JMenuItem s1 = new JMenuItem("Update Salary");
@@ -115,7 +115,7 @@ public class project extends JFrame implements ActionListener {
         p2.addActionListener(this);
  
         JMenu util =new JMenu("Utilities");
-        util.setForeground(Color.red);
+        util.setForeground(Color.blue);
     
         mb.add(util);
         JMenuItem u1 = new JMenuItem("Notepad");
@@ -168,17 +168,21 @@ public class project extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae){
         String msg= ae.getActionCommand();  
       
-        if(msg.equals("New Employee"))
+        if(msg.equals("New Employee")){
             new New_Employee().setVisible(true);
-        else if(msg.equals("List Employee"))
+            setVisible(false);
+        }else if(msg.equals("List Employee")){
             new List_Employee().setVisible(true);
-        else if(msg.equals("Update Employee"))
+        }else if(msg.equals("Update Employee")){
             new Update_employee().setVisible(true);
-        else if(msg.equals("Salary"))
+            setVisible(false);
+        }else if(msg.equals("Salary")){
             new Salary().setVisible(true);
-        else if(msg.equals("Update Salary"))
+            setVisible(false);
+        }else if(msg.equals("Update Salary")){
             new Update_salary().setVisible(true);
-        else if(msg.equals("Notepad")){
+            setVisible(false);
+        }else if(msg.equals("Notepad")){
             try{
                Runtime.getRuntime().exec("notepad.exe");
             }catch(Exception e){ }
@@ -195,6 +199,7 @@ public class project extends JFrame implements ActionListener {
         }
         else if(msg.equals("Take Attendance")){
             new TakeAttendance().setVisible(true);
+            setVisible(false);
         }
         else if(msg.equals("Exit"))
             System.exit(0);
