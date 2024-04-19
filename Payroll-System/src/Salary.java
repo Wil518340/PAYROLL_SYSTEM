@@ -80,7 +80,8 @@ public class Salary extends JFrame implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent ae){
-       
+        String msg= ae.getActionCommand();
+
         String hra = t1.getText();
         String id = c2.getSelectedItem();
         String da = t3.getText();
@@ -89,15 +90,20 @@ public class Salary extends JFrame implements ActionListener{
         String basic = t6.getText();
         String qry = "insert into salary values("+ id +","+hra+","+da+","+med+","+pf+","+basic+")";
        // Insert all the input values into the database 
-        try{
-            // Connect the database and execute the command
-            conn c1 = new conn();
-            c1.s.executeUpdate(qry);
-            JOptionPane.showMessageDialog(null,"Salary updated");
-            this.setVisible(false);
-        }catch(Exception ee){
-            ee.printStackTrace();
-        }
+       if(msg.equals("Submit")){
+            try{
+                // Connect the database and execute the command
+                conn c1 = new conn();
+                c1.s.executeUpdate(qry);
+                JOptionPane.showMessageDialog(null,"Salary updated");
+                this.setVisible(false);
+            }catch(Exception ee){
+                ee.printStackTrace();
+            }
+       }else if (msg.equals("Cancel")){
+        new project().setVisible(true); //show new page
+        setVisible(false);
+    }
     }
     
     public static void main(String[] args){
